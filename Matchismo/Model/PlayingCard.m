@@ -35,9 +35,14 @@
         // get last one
         Card *thisCard = [otherCards firstObject];
         // remove this from the array
-        [otherCards removeLastObject];
+        [otherCards removeObjectAtIndex:0];
         // rescore these
         score = [thisCard match:otherCards];
+    }
+    
+    // if we still only have 1 match then we will this card
+    if( cardsMatched == 1 ){
+        self.chosen = NO;
     }
     // apply some bonus for the number of cards matched
     return (score * cardsMatched);

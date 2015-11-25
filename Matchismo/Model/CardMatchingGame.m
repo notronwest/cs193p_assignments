@@ -25,7 +25,7 @@
 
 // getter for building the instance variable cards
 -(NSMutableArray *)cards{
-    if(!_cards) _cards = [[NSMutableArray alloc]init];
+    if(!_cards) _cards = [[NSMutableArray alloc] init];
     return _cards;
 }
 
@@ -70,7 +70,6 @@
     - match 2 numbers (mismatch 3rd) = 10
  
 */
-
 static const int MISMATCH_PENALTY = 2;
 static const int MATCH_BONUS = 4;
 static const int COST_TO_CHOSE = 1;
@@ -84,33 +83,29 @@ static const int COST_TO_CHOSE = 1;
         if(card.isChosen){
             card.chosen = NO;
         } else {
-            // get all of the other cards selected
-            for( Card *otherCard in self.cards ){
-                // if this other card is the other chosen card and its not already matched
-                if( otherCard.isChosen && !otherCard.isMatched ){
-                    // add this to the array of selected cards
-                    [_chosenCards addObject:otherCard];
-                    // if we are playing a 2 card game we can stop
-                    if( self.cardsToMatch == 2){
-                        break; // can only choose two cards
-                    } else if(self.cardsToMatch == 3 && [_chosenCards count] == 3){
-                        break;
-                    }
-                }
-            }
-            // handle the scoring if we have atleast 2 cards to match
-            if( [_chosenCards count] > 1){
-                int matchScore = [card match:_chosenCards];
+            // add this card into the array of chosen cars
+            [self.chosenCards addObject:card];
+            // mark it as chosen (NOTE: may not need to do that anymore)
+            card.chosen = YES;
+            // it costs to play
+            self.score -= COST_TO_CHOSE;
+            // handle the scoring if we have the correct number of cards
+            if( [self.chosenCards count] == self.cardsToMatch){
+                // get the first card out and start matching (this will essentially be the first card chosen in this turn)
+                Card *firstCard = [self.chosenCards firstObject];
+                // remove this card
+                [self.chosenCards removeObjectAtIndex:0];
+                // start matching
+                int matchScore = [firstCard match:self.chosenCards];
+                // at least 2 of the cards have matched
                 if( matchScore ){
                     self.score += matchScore * MATCH_BONUS;
+                    // clear all of these from the chosen
+                    [self.chosenCards removeAllObjects];
                 } else { // apply penalty for picking incorrectly
                     self.score -= MISMATCH_PENALTY;
                 }
             }
-
-            // add this into the score
-            self.score -= COST_TO_CHOSE;
-            card.chosen = YES;
         }
     }
 
