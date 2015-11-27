@@ -14,36 +14,47 @@
 - (int)match:(NSMutableArray *)otherCards{
     int score = 0;
     int cardsMatched = 1;
-    // loop through the other cards and match them
-    for(PlayingCard *otherCard in otherCards){
-        // if the card matches add the score
-        if( self.rank == otherCard.rank ){
-            score += 4;
-            cardsMatched++;
-            // set both cards as matched
-            self.matched = YES;
-            otherCard.matched = YES;
-        } else if( self.suit == otherCard.suit ){
-            score += 1;
-            cardsMatched++;
-            self.matched = YES;
-            otherCard.matched = YES;
+    // make a copy of the array to do the matching
+    NSMutableArray *cardsToMatch = [NSMutableArray arrayWithArray:otherCards];
+    // insert this card into the array of cards to check
+    [cardsToMatch insertObject:self atIndex:0];
+    
+    // loop through until we run out of cards
+    while([cardsToMatch count] > 0){
+        // get the first card out
+        PlayingCard *firstCard = [cardsToMatch firstObject];
+        // delete this object
+        [cardsToMatch removeObjectAtIndex:0];
+        // loop through the remaining cards and check
+        for( PlayingCard *cardToMatch in cardsToMatch){
+            // check suit
+            if( firstCard.rank == cardToMatch.rank ){
+                score += 4;
+                cardsMatched++;
+            } else if( firstCard.suit == cardToMatch.suit ){
+                score += 1;
+                cardsMatched++;
+            }
         }
-    }
-    // now pop off the last item and match this against the rest of the cards
-    while( [otherCards count] > 1 ){
-        // get last one
-        Card *thisCard = [otherCards firstObject];
-        // remove this from the array
-        [otherCards removeObjectAtIndex:0];
-        // rescore these
-        score = [thisCard match:otherCards];
     }
     
     // if we still only have 1 match then we will this card
-    if( cardsMatched == 1 ){
+    if( cardsMatched == 1 && !self.matched ){
         self.chosen = NO;
+        // now go through and leave only one card in the passed in array to selected
+        for(int i=0; i < [otherCards count] - 1; i++){
+            PlayingCard *cardToUnchoose = [otherCards objectAtIndex:i];
+            cardToUnchoose.chosen = NO;
+        }
+    } else {
+        // we have atleast one match so mark them all
+        self.matched = YES;
+        // match all the cards
+        for(PlayingCard *matchedCard in otherCards){
+            matchedCard.matched = YES;
+        }
     }
+    
     // apply some bonus for the number of cards matched
     return (score * cardsMatched);
 }
