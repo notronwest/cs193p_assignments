@@ -444,7 +444,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="444" width="290" height="21"/>
+                                    <rect key="frame" x="22" y="436" width="133" height="21"/>
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Jp-x0-bu3">
@@ -455,7 +455,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="147" y="537" width="110" height="34"/>
+                                    <rect key="frame" x="145" y="546" width="110" height="34"/>
                                 </variation>
                                 <connections>
                                     <action selector="startNewGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Z0f-Yb-eMn"/>
@@ -471,9 +471,19 @@
                                 </segments>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="140" y="488" width="121" height="29"/>
+                                    <rect key="frame" x="140" y="504" width="121" height="29"/>
                                 </variation>
                             </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vg4-0l-INu">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="145" y="436" width="234" height="21"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -511,6 +521,7 @@
                                 <exclude reference="l6Z-E4-dA1"/>
                                 <exclude reference="0Jp-x0-bu3"/>
                                 <exclude reference="hv2-mN-bWb"/>
+                                <exclude reference="Vg4-0l-INu"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -547,6 +558,7 @@
                                 <include reference="l6Z-E4-dA1"/>
                                 <include reference="0Jp-x0-bu3"/>
                                 <include reference="hv2-mN-bWb"/>
+                                <include reference="Vg4-0l-INu"/>
                             </mask>
                         </variation>
                     </view>
@@ -587,7 +599,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1590" y="-223"/>
+            <point key="canvasLocation" x="-1381.5" y="-254"/>
         </scene>
     </scenes>
     <resources>

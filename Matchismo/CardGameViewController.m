@@ -23,6 +23,8 @@
 - (IBAction)startNewGame:(UIButton *)sender {
     // create a new game
     _game = [self startGame];
+    // re-enable the game type option
+    _gameType.enabled = YES;
     // reset the UI
     for(UIButton *cardButton in self.cardButtons){
         // reset the text and images
@@ -50,6 +52,9 @@
 
 // handle clicking on a card
 - (IBAction)touchCardButton:(UIButton *)sender {
+    
+    // turn off the option of changing the game type
+    _gameType.enabled = NO;
     
     NSUInteger chosenButtonIndex = [self.cardButtons indexOfObject:sender];
     [self.game chooseCardAtIndex:chosenButtonIndex];

@@ -104,6 +104,10 @@ static const int COST_TO_CHOSE = 1;
                     [self.chosenCards removeAllObjects];
                 } else { // apply penalty for picking incorrectly
                     self.score -= MISMATCH_PENALTY;
+                    // now go through and leave only one card in the passed in array to selected
+                    for(int i=0; i < [self.chosenCards count] - 1; i++){
+                        [self.chosenCards removeObjectAtIndex:i];
+                    }
                 }
             }
         }
