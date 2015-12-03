@@ -13,6 +13,7 @@
 // defines an instance variable with
 @property (strong, nonatomic) NSString *suit;
 @property (nonatomic) NSUInteger rank;
+@property (strong, atomic) NSString *matchText;
 
 // defines a publically available method that returns valid suits
 + (NSArray *)validSuits;

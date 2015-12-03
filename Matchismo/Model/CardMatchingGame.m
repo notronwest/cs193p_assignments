@@ -29,7 +29,13 @@
     return _cards;
 }
 
--(instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck gameType:(NSString *)gameType{
+// setter for the game type
+-(void) setGameType:(NSString *)gameType{
+    // set the number of cards to match
+    _cardsToMatch = [[gameType componentsSeparatedByString: @" "][0] integerValue];
+}
+
+-(instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck {
     
     self = [super init];
     
@@ -44,9 +50,6 @@
             }
         }
     }
-    
-    // set the number of cards to match
-    _cardsToMatch = [[gameType componentsSeparatedByString: @" "][0] integerValue];
     
     return self;
 }

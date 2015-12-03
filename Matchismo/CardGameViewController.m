@@ -43,7 +43,7 @@
 }
              
 - (CardMatchingGame *)startGame {
-    return [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck] gameType:[_gameType titleForSegmentAtIndex:_gameType.selectedSegmentIndex]];
+    return [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
 }
 
 - (PlayingCardDeck *)createDeck{
@@ -52,7 +52,8 @@
 
 // handle clicking on a card
 - (IBAction)touchCardButton:(UIButton *)sender {
-    
+    // set the game type
+    [_game setGameType:[_gameType titleForSegmentAtIndex:_gameType.selectedSegmentIndex]];
     // turn off the option of changing the game type
     _gameType.enabled = NO;
     
