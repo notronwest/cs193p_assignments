@@ -30,7 +30,7 @@
 }
 
 // setter for the game type
--(void) setGameType:(NSString *)gameType{
+-(void)setGameType:(NSString *)gameType{
     // set the number of cards to match
     _cardsToMatch = [[gameType componentsSeparatedByString: @" "][0] integerValue];
 }
